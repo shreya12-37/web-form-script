@@ -18,3 +18,10 @@ frappe.web_form.on('do_you_provide_remote_simultaneous_conference_interpretation
         $('.ml-2').show();
     }
 });
+$('#terms').click(function (){
+    alert("testingggggggg");
+});
+
+frappe.web_form.after_save = () => {
+    window.location.reload(); 
+}
