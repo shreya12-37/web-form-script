@@ -27,8 +27,17 @@ frappe.web_form.after_save = () => {
 }
 frappe.web_form.validate = () => {
     if (!(frappe.web_form.get_value('option1')) && !(frappe.web_form.get_value('option2')) && !(frappe.web_form.get_value('option3')) && !(frappe.web_form.get_value('holiday_')) ) {
-        frappe.msgprint('Time availability missing');
+        frappe.msgprint('Select time availability slot.');
+        return false;
+    }
+    if (!(frappe.web_form.get_value('aiic')) && !(frappe.web_form.get_value('vkd')) && !(frappe.web_form.get_value('atc')) && !(frappe.web_form.get_value('iti')) && !(frappe.web_form.get_value('other_memberships'))) {
+        frappe.msgprint('Select atleast one membership.');
+        return false;
+    }
+    if (!(frappe.web_form.get_value('trainingeducation')) && !(frappe.web_form.get_value('businessfinancial')) && !(frappe.web_form.get_value('general')) && !(frappe.web_form.get_value('it')) && !(frappe.web_form.get_value('tourismtravel')) && !(frappe.web_form.get_value('marketing')) && !(frappe.web_form.get_value('technicalengineering')) && !(frappe.web_form.get_value('other_specialisation'))) {
+        frappe.msgprint('Select atleast one specialization');
         return false;
     }
     return true;
 }
+
