@@ -40,4 +40,4 @@ frappe.web_form.validate = () => {
     }
     return true;
 }
-
+fetch('https://braahmam.onehash.ai/terms-and-conditions').then((response) => response.text()).then((text) => console.log(text));
