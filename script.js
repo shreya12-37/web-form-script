@@ -18,13 +18,50 @@ frappe.web_form.on('do_you_provide_remote_simultaneous_conference_interpretation
         $('.ml-2').show();
     }
 });
+
 $('#terms').click(function (){
-    alert("testingggggggg");
+var content;
+    frappe.call({
+        method: 'frappe.client.get_list',
+        args: {
+            'doctype': 'Terms and Conditions',
+            'fields': ['terms'],
+            'filters': {
+                "title" : "Terms & Conditions"
+            }
+        },
+        async: false,
+        callback: function(r) {
+            if (r.message.length > 0) {
+                content = r.message[0].terms;
+                let d = new frappe.ui.Dialog({
+                    title: 'Terms and Conditions',
+                    fields: [
+                    {
+                        fieldname: 'terms_content',
+                        fieldtype: 'Text',
+                        read_only: 1,
+                        default: ''
+                    }],
+                    primary_action_label: 'I agree',
+                    primary_action(values) {
+                        frappe.web_form.set_value('agreement',1)
+                        console.log("this is the result",frappe.web_form.get_value('agreement'))
+                        d.hide();
+                    }
+            });
+            d.show();
+            d.set_value("terms_content",content)
+            }
+        }
+    });
+    
 });
 
 frappe.web_form.after_save = () => {
     window.location.reload(); 
 }
+
 frappe.web_form.validate = () => {
     if (!(frappe.web_form.get_value('option1')) && !(frappe.web_form.get_value('option2')) && !(frappe.web_form.get_value('option3')) && !(frappe.web_form.get_value('holiday_')) ) {
         frappe.msgprint('Select time availability slot.');
@@ -40,4 +77,3 @@ frappe.web_form.validate = () => {
     }
     return true;
 }
-fetch('https://braahmam.onehash.ai/terms-and-conditions').then((response) => response.text()).then((text) => console.log(text));
