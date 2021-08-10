@@ -21,7 +21,7 @@ frappe.web_form.on('do_you_provide_remote_simultaneous_conference_interpretation
 
 $('#terms').click(function (){
 var content;
-var myurl = 'api/resource/Terms%20and%20Conditions/Terms%20&%20Conditions'
+var myurl = 'api/resource/doctypename'
     $.ajax({
         type: 'GET', 
 	    url: myurl,
