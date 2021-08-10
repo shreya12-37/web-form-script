@@ -68,6 +68,14 @@ frappe.web_form.validate = () => {
         frappe.msgprint('Select atleast one specialization');
         return false;
     }
+	if (!(frappe.web_form.get_value('frenchenglish')) && !(frappe.web_form.get_value('italianenglish')) && !(frappe.web_form.get_value('bengalienglish')) && !(frappe.web_form.get_value('urduenglish')) && !(frappe.web_form.get_value('marathienglish')) && !(frappe.web_form.get_value('tamilenglish')) && !(frappe.web_form.get_value('gujaratienglish')) && !(frappe.web_form.get_value('japaneseenglish')) && !(frappe.web_form.get_value('russianenglish')) && !(frappe.web_form.get_value('mandarinenglish')) && !(frappe.web_form.get_value('koreanenglish')) && !(frappe.web_form.get_value('indonesianenglish')) && !(frappe.web_form.get_value('vietnameseenglish')) && !(frappe.web_form.get_value('japaneseenglish')) && !(frappe.web_form.get_value('thaienglish')) && !(frappe.web_form.get_value('burmeseenglish')) && !(frappe.web_form.get_value('javaneseenglish')) && !(frappe.web_form.get_value('arabicenglish')) && !(frappe.web_form.get_value('portugueseenglish')) && !(frappe.web_form.get_value('germanenglish')) && !(frappe.web_form.get_value('spanishenglish')) && !(frappe.web_form.get_value('turkishenglish')) && !(frappe.web_form.get_value('hindienglish')) && !(frappe.web_form.get_value('other_lang'))) {
+        frappe.msgprint('Select atleast one language pair.');
+        return false;
+    }
+    if (!(frappe.web_form.get_value('yes_')) && !(frappe.web_form.get_value('no_'))) {
+        frappe.msgprint('Select option for wired internet.');
+        return false;
+    }
     return true;
 }
 
