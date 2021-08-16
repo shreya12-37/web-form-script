@@ -61,7 +61,7 @@ var content;
 frappe.web_form.after_save = () => {
     window.location.reload(); 
 }
-
+const error = []
 frappe.web_form.validate = () => {
     
     if (!(frappe.web_form.get_value('option1')) && !(frappe.web_form.get_value('option2')) && !(frappe.web_form.get_value('option3')) && !(frappe.web_form.get_value('holiday_')) ) {
