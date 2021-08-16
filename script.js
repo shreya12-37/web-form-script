@@ -63,16 +63,24 @@ frappe.web_form.after_save = () => {
 }
 
 frappe.web_form.validate = () => {
+    
     if (!(frappe.web_form.get_value('option1')) && !(frappe.web_form.get_value('option2')) && !(frappe.web_form.get_value('option3')) && !(frappe.web_form.get_value('holiday_')) ) {
-        frappe.msgprint('Select time availability slot.');
-        return false;
+        error.push("Select time availability slot.");
     }
     if (!(frappe.web_form.get_value('aiic')) && !(frappe.web_form.get_value('vkd')) && !(frappe.web_form.get_value('atc')) && !(frappe.web_form.get_value('iti')) && !(frappe.web_form.get_value('other_memberships'))) {
-        frappe.msgprint('Select atleast one membership.');
-        return false;
+        error.push("Select at least one Membership.");
     }
     if (!(frappe.web_form.get_value('trainingeducation')) && !(frappe.web_form.get_value('businessfinancial')) && !(frappe.web_form.get_value('general')) && !(frappe.web_form.get_value('it')) && !(frappe.web_form.get_value('tourismtravel')) && !(frappe.web_form.get_value('marketing')) && !(frappe.web_form.get_value('technicalengineering')) && !(frappe.web_form.get_value('other_specialisation'))) {
-        frappe.msgprint('Select atleast one specialization');
+        error.push("Select at least one Specialization.");
+    }
+    if (!(frappe.web_form.get_value('frenchenglish')) && !(frappe.web_form.get_value('italianenglish')) && !(frappe.web_form.get_value('bengalienglish')) && !(frappe.web_form.get_value('urduenglish')) && !(frappe.web_form.get_value('marathienglish')) && !(frappe.web_form.get_value('tamilenglish')) && !(frappe.web_form.get_value('gujaratienglish')) && !(frappe.web_form.get_value('japaneseenglish')) && !(frappe.web_form.get_value('russianenglish')) && !(frappe.web_form.get_value('mandarinenglish')) && !(frappe.web_form.get_value('koreanenglish')) && !(frappe.web_form.get_value('indonesianenglish')) && !(frappe.web_form.get_value('vietnameseenglish')) && !(frappe.web_form.get_value('japaneseenglish')) && !(frappe.web_form.get_value('thaienglish')) && !(frappe.web_form.get_value('burmeseenglish')) && !(frappe.web_form.get_value('javaneseenglish')) && !(frappe.web_form.get_value('arabicenglish')) && !(frappe.web_form.get_value('portugueseenglish')) && !(frappe.web_form.get_value('germanenglish')) && !(frappe.web_form.get_value('spanishenglish')) && !(frappe.web_form.get_value('turkishenglish')) && !(frappe.web_form.get_value('hindienglish')) && !(frappe.web_form.get_value('other_lang'))) {
+        error.push("Select at least one Language Pair.");
+    }
+    if (!(frappe.web_form.get_value('yes_')) && !(frappe.web_form.get_value('no_'))) {
+        error.push("Select option for Wired Internet.");
+    }
+    if (error.length>0){
+        frappe.msgprint(error);
         return false;
     }
     return true;
