@@ -156,6 +156,7 @@ var fields = {
   };
 
 frappe.web_form.validate = () => {
+    
     const error = []
     for (let i in fields){
         y = fields[i];
@@ -182,8 +183,21 @@ frappe.web_form.validate = () => {
         frappe.msgprint(error);
         return false;
     }
-    
+    const invalid = []
+    var val = frappe.web_form.get_value('upload_your_cv');
+    const cvext = val.split(".");
+    var value = frappe.web_form.get_value('speed_test_result');
+    const speedext = value.split(".");
+    if ((cvext[cvext.length-1])!== "pdf" && (cvext[cvext.length-1])!== "docx") {
+        invalid.push("CV can be of PDF or Word type Only.");
+    }
+    if ((speedext[speedext.length-1])!== "pdf" && (speedext[speedext.length-1])!== "png" && (speedext[speedext.length-1])!== "jpep" && (speedext[speedext.length-1])!=="jpg") {
+        invalid.push("Speed Test Result can be of PDF or .PNG or .JPEG or .JPG type Only.")
+    }
+    if (invalid.length>0){
+        frappe.msgprint(invalid);
+        return false;
+    }
     return true;
-    
 }
 
